@@ -143,6 +143,9 @@ jobs:
           run: |
            curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 
+        - name: Initialize TFLint Plugins
+          run: tflint --init
+
         - name: Run tflint with custom config
           run: |
            echo "Using custom rules from .tflint.hcl"

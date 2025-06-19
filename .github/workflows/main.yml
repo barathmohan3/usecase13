@@ -280,11 +280,6 @@ jobs:
         - name: Terraform Init
           run: terraform init
 
-        - name: Download Lambda Zip Artifact
-          uses: actions/download-artifact@v4
-          with:
-           name: lambda-zip
-
         - name: Terraform "${{ github.event.inputs.action }}"
           run: |
            if [[ "${{ github.event.inputs.action }}" == "destroy" ]]; then

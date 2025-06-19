@@ -365,3 +365,11 @@ jobs:
               repo: context.repo.repo,
               body: output
             })
+
+      - name: Render terraform docs and push changes back to PR
+        uses: terraform-docs/gh-actions@v1.1.0
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: inject
+          git-push: true

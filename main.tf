@@ -19,4 +19,8 @@ module "cognito" {
   app_client_name  = var.app_client_name
   domain_prefix    = var.domain_prefix
   api_endpoint    = [module.apigateway.api_endpoint]
+  default_user_username = "bmware"
+  default_user_email    = "barathmohansiva3@gmail.com"
+  default_user_password = "Password@123"
+
 }

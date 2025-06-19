@@ -61,10 +61,17 @@ jobs:
       - name: Terraform Init
         run: terraform init 
       
-      - name: package lambda functions
+      - name: Package Lambda function
         run: |
-          cd lambda
-          zip ../lambda_function.zip lambda_function.py
+         cd lambda
+         zip ../lambda_function.zip lambda_function.py
+
+      - name: Upload Lambda Zip Artifact
+        uses: actions/upload-artifact@v4
+        with:
+         name: lambda-zip
+         path: lambda_function.zip
+
 
   Validation:
       if: github.event.inputs.action == 'apply'
@@ -166,6 +173,11 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
+      - name: Download Lambda Zip Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: lambda-zip
+
       - name: Terraform Plan (save)
         run: terraform plan -out=tfplan.binary
 
@@ -204,6 +216,11 @@ jobs:
 
         - name: Terraform Init
           run: terraform init
+
+        - name: Download Lambda Zip Artifact
+          uses: actions/download-artifact@v4
+          with:
+           name: lambda-zip
  
         - name: Terraform plan
           run: terraform plan
@@ -229,6 +246,12 @@ jobs:
            git commit -m "Update Terraform docs [skip ci]" || echo "No changes to commit"
            git push
       #  Terraform Docs Integration Ends Here
+
+        - name: Download Lambda Zip Artifact
+          uses: actions/download-artifact@v4
+          with:
+           name: lambda-zip
+
         - name: Terraform plan
           run: terraform plan
   
@@ -254,6 +277,11 @@ jobs:
 
         - name: Terraform Init
           run: terraform init
+
+        - name: Download Lambda Zip Artifact
+          uses: actions/download-artifact@v4
+          with:
+           name: lambda-zip
 
         - name: Terraform "${{ github.event.inputs.action }}"
           run: |

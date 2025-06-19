@@ -1,4 +1,4 @@
-name: Website Login through Cognito
+name: Login through Cognito
 
 on:
   workflow_dispatch:

@@ -17,7 +17,7 @@ resource "aws_cognito_user_pool_client" "client" {
   supported_identity_providers = ["COGNITO"]
 
   callback_urls = [
-    "https://example.amazonaws.com"
+    module.apigateway.api_endpoint
   ]
 
   explicit_auth_flows = [

@@ -9,3 +9,7 @@ variable "app_client_name" {
 variable "domain_prefix" {
   type = string
 }
+
+variable "api_endpoint" {
+type = list(string)
+}

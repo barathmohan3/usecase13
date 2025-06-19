@@ -16,9 +16,8 @@ resource "aws_cognito_user_pool_client" "client" {
   ]
   supported_identity_providers = ["COGNITO"]
 
-  callback_urls = [
-    var.api_endpoint
-  ]
+  callback_urls = var.api_endpoint
+  
 
   explicit_auth_flows = [
     "ALLOW_USER_PASSWORD_AUTH",

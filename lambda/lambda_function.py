@@ -8,7 +8,7 @@ def lambda_handler(event, context):
         <title>Hello Page</title>
         <style>
           body {
-            background-color: #f0f0f0;
+            background-color: darkorange;
             font-family: Arial, sans-serif;
             text-align: center;
             padding-top: 100px;

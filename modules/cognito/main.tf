@@ -31,3 +31,17 @@ resource "aws_cognito_user_pool_domain" "domain" {
   domain       = var.domain_prefix
   user_pool_id = aws_cognito_user_pool.this.id
 }
+
+resource "aws_cognito_user" "default_user" {
+  user_pool_id = aws_cognito_user_pool.this.id
+  username     = var.default_user_username
+
+  attributes = {
+    email = var.default_user_email
+  }
+
+  temporary_password = var.default_user_password
+  force_alias_creation = false
+  message_action       = "SUPPRESS" # suppress sending email/SMS
+}
+

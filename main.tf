@@ -19,5 +19,4 @@ module "cognito" {
   app_client_name  = var.app_client_name
   domain_prefix    = var.domain_prefix
   callback_urls    = [module.apigateway.api_endpoint]
-  logout_urls      = [module.apigateway.api_endpoint]
 }

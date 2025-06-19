@@ -18,5 +18,5 @@ module "cognito" {
   user_pool_name   = var.user_pool_name
   app_client_name  = var.app_client_name
   domain_prefix    = var.domain_prefix
-  callback_urls    = [module.apigateway.api_endpoint]
+  api_endpoint    = [module.apigateway.api_endpoint]
 }

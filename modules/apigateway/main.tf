@@ -11,6 +11,19 @@ resource "aws_apigatewayv2_integration" "lambda_integration" {
   payload_format_version  = "2.0"
 }
 
+resource "aws_apigatewayv2_authorizer" "cognito_auth" {
+  api_id          = aws_apigatewayv2_api.http_api.id
+  name            = "CognitoJWTAuthorizer"
+  authorizer_type = "JWT"
+
+  identity_sources = ["$request.header.Authorization"]
+
+  jwt_configuration {
+    audience = [var.client_id] # Pass this from Cognito module output
+    issuer   = "https://${var.domain_prefix}.auth.${var.aws_region}.amazoncognito.com"
+  }
+}
+
 resource "aws_apigatewayv2_route" "default_route" {
   api_id    = aws_apigatewayv2_api.http_api.id
   route_key = "GET /"

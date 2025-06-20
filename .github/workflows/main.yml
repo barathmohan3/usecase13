@@ -235,21 +235,6 @@ jobs:
            chmod +x terraform-docs
            sudo mv terraform-docs /usr/local/bin/
 
-
-        - name: Generate Terraform Docs
-          run: |
-           terraform-docs markdown table . > README.md
-
-        - name: Commit Terraform Docs
-          run: |
-           git config --global user.name "github-actions"
-           git config --global user.email "github-actions@github.com"
-           git pull --rebase origin main || true
-           git add README.md
-           git commit -m "Update Terraform docs [skip ci]" || echo "No changes to commit"
-           git push
-      #  Terraform Docs Integration Ends Here
-
         - name: Download Lambda Zip Artifact
           uses: actions/download-artifact@v4
           with:

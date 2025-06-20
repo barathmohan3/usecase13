@@ -45,7 +45,7 @@ resource "aws_apigatewayv2_stage" "default_stage" {
 
 resource "null_resource" "wait_for_cognito_domain" {
   provisioner "local-exec" {
-    command = "sleep 30" # wait 30 sec to let domain go live
+    command = "sleep 120" # wait 30 sec to let domain go live
   }
 
   depends_on = [aws_apigatewayv2_stage.default_stage] # or your domain creation resource

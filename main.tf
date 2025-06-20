@@ -9,9 +9,13 @@ module "lambda" {
 }
 
 module "apigateway" {
-  source              = "./modules/apigateway"
-  lambda_function_arn = module.lambda.lambda_function_arn
+  source                     = "./modules/apigateway"
+  lambda_function_arn        = module.lambda.lambda_function_arn
+  cognito_client_id          = module.cognito.client_id
+  cognito_user_pool_domain   = module.cognito.domain_prefix
+  aws_region                 = var.aws_region
 }
+
 
 module "cognito" {
   source           = "./modules/cognito"

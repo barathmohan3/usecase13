@@ -17,7 +17,3 @@ variable "aws_region" {
 variable "domain_prefix" {
   type = string
 }
-
-variable "cognito_client_id" {
-  type = string
-}

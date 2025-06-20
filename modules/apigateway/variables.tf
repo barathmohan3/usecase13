@@ -17,3 +17,8 @@ variable "aws_region" {
 variable "domain_prefix" {
   type = string
 }
+
+variable "user_pool_id" {
+  type = string
+}
+

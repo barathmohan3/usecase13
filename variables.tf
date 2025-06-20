@@ -32,7 +32,7 @@ variable "app_client_name" {
 }
 
 variable "domain_prefix" {
-  default = "firstexample"
+  default = "firstexample-bmware"
 }
 
 variable "aws_region" {

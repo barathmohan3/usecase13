@@ -40,9 +40,3 @@ variable "aws_region" {
   type        = string
   default     = "us-east-1"
 }
-
-variable "domain_prefix" {
-  description = "Prefix for Cognito domain"
-  type        = string
-}
-

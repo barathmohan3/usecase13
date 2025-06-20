@@ -21,6 +21,7 @@ resource "aws_apigatewayv2_authorizer" "cognito_auth" {
     audience = [var.cognito_client_id]
     issuer   = "https://${var.cognito_user_pool_domain}.auth.${var.aws_region}.amazoncognito.com"
   }
+  depends_on = [aws_apigatewayv2_integration.lambda_integration] # Ensure Lambda is ready
 }
 
 resource "aws_apigatewayv2_route" "default_route" {

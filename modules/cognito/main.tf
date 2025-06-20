@@ -44,4 +44,3 @@ resource "aws_cognito_user" "default_user" {
   force_alias_creation = false
   message_action       = "SUPPRESS" # suppress sending email/SMS
 }
-

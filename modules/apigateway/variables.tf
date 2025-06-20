@@ -13,3 +13,11 @@ variable "cognito_user_pool_domain" {
 variable "aws_region" {
   type = string
 }
+
+variable "domain_prefix" {
+  type = string
+}
+
+variable "cognito_client_id" {
+  type = string
+}

@@ -20,7 +20,7 @@ variable "environment_variables" {
 }
 
 variable "lambda_role_name" {
-  default = "lambda_role"
+  default = "bm_lambda_role"
 }
 
 variable "user_pool_name" {

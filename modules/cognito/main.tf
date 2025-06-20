@@ -7,7 +7,7 @@ resource "aws_cognito_user_pool_client" "client" {
   user_pool_id = aws_cognito_user_pool.this.id
 
   generate_secret     = false
-  allowed_oauth_flows = ["code"]
+  allowed_oauth_flows = ["code" , "implicit"]
   allowed_oauth_scopes = [
     "openid",
     "email",

@@ -12,17 +12,19 @@ resource "aws_apigatewayv2_integration" "lambda_integration" {
 }
 
 resource "aws_apigatewayv2_authorizer" "cognito_auth" {
-  name               = "cognito-jwt-auth"
-  api_id             = aws_apigatewayv2_api.http_api.id
-  authorizer_type    = "JWT"
-  identity_sources   = ["$request.header.Authorization"]
+  name             = "cognito-jwt-auth"
+  api_id           = aws_apigatewayv2_api.http_api.id
+  authorizer_type  = "JWT"
+  identity_sources = ["$request.header.Authorization"]
 
   jwt_configuration {
     audience = [var.cognito_client_id]
-    issuer   = "https://${var.cognito_user_pool_domain}.auth.${var.aws_region}.amazoncognito.com"
+    issuer   = "https://${var.domain_prefix}.auth.${var.aws_region}.amazoncognito.com"
   }
-  depends_on = [aws_apigatewayv2_integration.lambda_integration] # Ensure Lambda is ready
+
+  depends_on = [null_resource.wait_for_cognito_domain]
 }
+
 
 resource "aws_apigatewayv2_route" "default_route" {
   api_id    = aws_apigatewayv2_api.http_api.id
@@ -39,6 +41,14 @@ resource "aws_apigatewayv2_stage" "default_stage" {
   api_id      = aws_apigatewayv2_api.http_api.id
   name        = "$default"
   auto_deploy = true
+}
+
+resource "null_resource" "wait_for_cognito_domain" {
+  provisioner "local-exec" {
+    command = "sleep 30" # wait 30 sec to let domain go live
+  }
+
+  depends_on = [aws_apigatewayv2_stage.default_stage] # or your domain creation resource
 }
 
 resource "aws_lambda_permission" "allow_apigw" {

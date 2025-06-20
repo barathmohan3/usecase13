@@ -19,6 +19,6 @@ variable "domain_prefix" {
 }
 
 variable "user_pool_id" {
-  type = string
+  type = string
 }
 

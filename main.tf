@@ -14,7 +14,7 @@ module "apigateway" {
   cognito_client_id          = module.cognito.client_id
   domain_prefix              = var.domain_prefix 
   cognito_user_pool_domain   = module.cognito.domain_prefix
-  user_pool_id               = module.cognito.user_pool_id
+  user_pool_id               = module.cognito.user_pool_id
   aws_region                 = var.aws_region
 }
 

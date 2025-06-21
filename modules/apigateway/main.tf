@@ -1,6 +1,14 @@
 resource "aws_apigatewayv2_api" "http_api" {
   name          = "hello_api"
   protocol_type = "HTTP"
+  cors_configuration {
+    allow_origins = ["*"] # or use your Glitch URL
+    allow_methods = ["GET", "POST", "OPTIONS"]
+    allow_headers = ["Authorization", "Content-Type"]
+    expose_headers = ["*"]
+    max_age        = 3600
+  }
+
 }
 
 resource "aws_apigatewayv2_integration" "lambda_integration" {
